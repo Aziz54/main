@@ -4,55 +4,61 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class MessageConversation implements Serializable {
+public class ReponseOuverte implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String contenu;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date date;
+    private String reponse;
     @OneToOne
-    private Conversation conversation;
+    private QuestionOuverte question;
+    private int width;
+    private int height;
     
-    public String getContenu() {
-        return contenu;
+    public String getReponse() {
+        return reponse;
     }
 
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
     }
 
-    public Date getDate() {
-        return date;
+    public QuestionOuverte getQuestion() {
+        return question;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setQuestion(QuestionOuverte question) {
+        this.question = question;
     }
 
-    public Conversation getConversation() {
-        return conversation;
+    public int getWidth() {
+        return width;
     }
 
-    public void setConversation(Conversation conversation) {
-        this.conversation = conversation;
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public Long getId() {
@@ -73,10 +79,10 @@ public class MessageConversation implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MessageConversation)) {
+        if (!(object instanceof ReponseOuverte)) {
             return false;
         }
-        MessageConversation other = (MessageConversation) object;
+        ReponseOuverte other = (ReponseOuverte) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -85,7 +91,7 @@ public class MessageConversation implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.MessageConversation[ id=" + id + " ]";
+        return "ul.dateroulette.entity.ReponseOuverte[ id=" + id + " ]";
     }
     
 }

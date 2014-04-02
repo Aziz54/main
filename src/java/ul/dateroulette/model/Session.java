@@ -4,41 +4,53 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class ReponseQCM implements Serializable {
+public class Session implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    /**
-   * 
-   * @element-type Choix
-   */
-    @OneToMany
-    private ArrayList<Choix>  reponses;
+    private Boolean estConnecte;
+    @OneToOne
+    private Utilisateur utilisateur;
     
-    public ArrayList<Choix> getReponses() {
-        return reponses;
+    public Boolean connexion() {
+        return null;
     }
 
-    public void setReponses(ArrayList<Choix> reponses) {
-        this.reponses = reponses;
+    public Boolean deconnexion() {
+        return null;
     }
-    
+
+    public Boolean getEstConnecte() {
+        return estConnecte;
+    }
+
+    public void setEstConnecte(Boolean estConnecte) {
+        this.estConnecte = estConnecte;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,10 +69,10 @@ public class ReponseQCM implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ReponseQCM)) {
+        if (!(object instanceof Session)) {
             return false;
         }
-        ReponseQCM other = (ReponseQCM) object;
+        Session other = (Session) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -69,7 +81,7 @@ public class ReponseQCM implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.ReponseQCM[ id=" + id + " ]";
+        return "ul.dateroulette.entity.Session[ id=" + id + " ]";
     }
     
 }

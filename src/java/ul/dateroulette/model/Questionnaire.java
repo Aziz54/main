@@ -4,51 +4,57 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class Session implements Serializable {
+public class Questionnaire implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Boolean estConnecte;
-    @OneToOne
-    private Utilisateur utilisateur;
+    private String nom;
+    /**
+     * 
+     * @element-type Question
+     */
+    @OneToMany
+    private Collection<Question>  questions;
     
-    public Boolean connexion() {
-        return null;
+    public String getNom() {
+        return nom;
     }
 
-    public Boolean deconnexion() {
-        return null;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public Boolean getEstConnecte() {
-        return estConnecte;
+    public Collection<Question> getQuestions() {
+        return questions;
     }
 
-    public void setEstConnecte(Boolean estConnecte) {
-        this.estConnecte = estConnecte;
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public void ajouterQuestion(Question question) {
+        this.questions.add(question);
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void retirerQuestion(Question question) {
+        this.questions.remove(question);
     }
 
     public Long getId() {
@@ -69,10 +75,10 @@ public class Session implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Session)) {
+        if (!(object instanceof Questionnaire)) {
             return false;
         }
-        Session other = (Session) object;
+        Questionnaire other = (Questionnaire) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -81,7 +87,7 @@ public class Session implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Session[ id=" + id + " ]";
+        return "ul.dateroulette.entity.Questionnaire[ id=" + id + " ]";
     }
     
 }

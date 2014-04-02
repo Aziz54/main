@@ -4,43 +4,55 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class Choix implements Serializable {
+public class MessageConversation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String reponse;
+    private String contenu;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date date;
     @OneToOne
-    private QuestionQCM question;
+    private Conversation conversation;
     
-    public String getReponse() {
-        return reponse;
+    public String getContenu() {
+        return contenu;
     }
 
-    public void setReponse(String reponse) {
-        this.reponse = reponse;
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
     }
 
-    public QuestionQCM getQuestion() {
-        return question;
+    public Date getDate() {
+        return date;
     }
 
-    public void setQuestion(QuestionQCM question) {
-        this.question = question;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     public Long getId() {
@@ -61,10 +73,10 @@ public class Choix implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Choix)) {
+        if (!(object instanceof MessageConversation)) {
             return false;
         }
-        Choix other = (Choix) object;
+        MessageConversation other = (MessageConversation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -73,7 +85,7 @@ public class Choix implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Choix[ id=" + id + " ]";
+        return "ul.dateroulette.entity.MessageConversation[ id=" + id + " ]";
     }
     
 }

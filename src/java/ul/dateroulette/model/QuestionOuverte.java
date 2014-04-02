@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author thomas
  */
 @Entity
-public class Administrateur extends Utilisateur implements Serializable {
+public class QuestionOuverte extends Question implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,10 +43,10 @@ public class Administrateur extends Utilisateur implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Administrateur)) {
+        if (!(object instanceof QuestionOuverte)) {
             return false;
         }
-        Administrateur other = (Administrateur) object;
+        QuestionOuverte other = (QuestionOuverte) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -55,7 +55,7 @@ public class Administrateur extends Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Administrateur[ id=" + id + " ]";
+        return "ul.dateroulette.entity.QuestionOuverte[ id=" + id + " ]";
     }
     
 }

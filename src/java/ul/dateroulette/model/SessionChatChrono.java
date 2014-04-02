@@ -4,29 +4,43 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class QuestionOuverte extends Question implements Serializable {
+public class SessionChatChrono extends SessionChat implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date debut;
+    
+    public Date getDebut() {
+        return debut;
+    }
 
+    public void setDebut(Date debut) {
+        this.debut = debut;
+    }
+
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -41,10 +55,10 @@ public class QuestionOuverte extends Question implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof QuestionOuverte)) {
+        if (!(object instanceof SessionChatChrono)) {
             return false;
         }
-        QuestionOuverte other = (QuestionOuverte) object;
+        SessionChatChrono other = (SessionChatChrono) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -53,7 +67,7 @@ public class QuestionOuverte extends Question implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.QuestionOuverte[ id=" + id + " ]";
+        return "ul.dateroulette.entity.SessionChatChrono[ id=" + id + " ]";
     }
     
 }

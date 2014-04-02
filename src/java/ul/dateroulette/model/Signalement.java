@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,34 +20,30 @@ import javax.persistence.Temporal;
  * @author thomas
  */
 @Entity
-public class Image implements Serializable {
+public class Signalement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nom;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     private String description;
-    private Boolean signalee;
-    private Boolean estRetiree;
+    private Boolean estTraitee;
+    private Boolean estEnCoursDeTraitement;
+    private Boolean estEnAttente;
     @OneToOne
-    private Galerie galerie;
+    private Utilisateur emetteur;
     
-    public Boolean signaler() {
+    public Boolean enCoursDeTraitement() {
         return null;
     }
 
-    public Boolean retirer() {
+    public Boolean traitee() {
         return null;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public Boolean enAttente() {
+        return null;
     }
 
     public Date getDate() {
@@ -66,28 +62,36 @@ public class Image implements Serializable {
         this.description = description;
     }
 
-    public Boolean getSignalee() {
-        return signalee;
+    public Boolean getEstTraitee() {
+        return estTraitee;
     }
 
-    public void setSignalee(Boolean signalee) {
-        this.signalee = signalee;
+    public void setEstTraitee(Boolean estTraitee) {
+        this.estTraitee = estTraitee;
     }
 
-    public Boolean getEstRetiree() {
-        return estRetiree;
+    public Boolean getEstEnCoursDeTraitement() {
+        return estEnCoursDeTraitement;
     }
 
-    public void setEstRetiree(Boolean estRetiree) {
-        this.estRetiree = estRetiree;
+    public void setEstEnCoursDeTraitement(Boolean estEnCoursDeTraitement) {
+        this.estEnCoursDeTraitement = estEnCoursDeTraitement;
     }
 
-    public Galerie getGalerie() {
-        return galerie;
+    public Boolean getEstEnAttente() {
+        return estEnAttente;
     }
 
-    public void setGalerie(Galerie galerie) {
-        this.galerie = galerie;
+    public void setEstEnAttente(Boolean estEnAttente) {
+        this.estEnAttente = estEnAttente;
+    }
+
+    public Utilisateur getEmetteur() {
+        return emetteur;
+    }
+
+    public void setEmetteur(Utilisateur emetteur) {
+        this.emetteur = emetteur;
     }
 
     public Long getId() {
@@ -108,10 +112,10 @@ public class Image implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Image)) {
+        if (!(object instanceof Signalement)) {
             return false;
         }
-        Image other = (Image) object;
+        Signalement other = (Signalement) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -120,7 +124,7 @@ public class Image implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Image[ id=" + id + " ]";
+        return "ul.dateroulette.entity.Signalement[ id=" + id + " ]";
     }
     
 }

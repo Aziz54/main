@@ -4,35 +4,34 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class SessionChatChrono extends SessionChat implements Serializable {
+public class SignalementUtilisateur extends Signalement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date debut;
+    @OneToOne
+    private Utilisateur utilisateurSignale;
     
-    public Date getDebut() {
-        return debut;
+    public Utilisateur getUtilisateurSignale() {
+        return utilisateurSignale;
     }
 
-    public void setDebut(Date debut) {
-        this.debut = debut;
+    public void setUtilisateurSignale(Utilisateur utilisateurSignale) {
+        this.utilisateurSignale = utilisateurSignale;
     }
 
     @Override
@@ -55,10 +54,10 @@ public class SessionChatChrono extends SessionChat implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SessionChatChrono)) {
+        if (!(object instanceof SignalementUtilisateur)) {
             return false;
         }
-        SessionChatChrono other = (SessionChatChrono) object;
+        SignalementUtilisateur other = (SignalementUtilisateur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -67,7 +66,7 @@ public class SessionChatChrono extends SessionChat implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.SessionChatChrono[ id=" + id + " ]";
+        return "ul.dateroulette.entity.SignalementUtilisateur[ id=" + id + " ]";
     }
     
 }

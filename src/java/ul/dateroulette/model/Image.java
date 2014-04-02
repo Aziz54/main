@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,35 +9,44 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
-/**
- *
- * @author thomas
- */
 @Entity
-public class Signalement implements Serializable {
+public class Image implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //private String nom;
+    private String url;
+    /*@Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     private String description;
-    private Boolean estTraitee;
-    private Boolean estEnCoursDeTraitement;
-    private Boolean estEnAttente;
+    private Boolean signalee;
+    private Boolean estRetiree;
     @OneToOne
-    private Utilisateur emetteur;
+    private Galerie galerie;*/
     
-    public Boolean enCoursDeTraitement() {
+    public Image(){
+        
+    }
+    
+    public Image(String url){
+        this.url = url;
+    }
+    
+    public Boolean signaler() {
         return null;
     }
 
-    public Boolean traitee() {
+    public Boolean retirer() {
         return null;
     }
 
-    public Boolean enAttente() {
-        return null;
+    /*public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public Date getDate() {
@@ -62,37 +65,29 @@ public class Signalement implements Serializable {
         this.description = description;
     }
 
-    public Boolean getEstTraitee() {
-        return estTraitee;
+    public Boolean getSignalee() {
+        return signalee;
     }
 
-    public void setEstTraitee(Boolean estTraitee) {
-        this.estTraitee = estTraitee;
+    public void setSignalee(Boolean signalee) {
+        this.signalee = signalee;
     }
 
-    public Boolean getEstEnCoursDeTraitement() {
-        return estEnCoursDeTraitement;
+    public Boolean getEstRetiree() {
+        return estRetiree;
     }
 
-    public void setEstEnCoursDeTraitement(Boolean estEnCoursDeTraitement) {
-        this.estEnCoursDeTraitement = estEnCoursDeTraitement;
+    public void setEstRetiree(Boolean estRetiree) {
+        this.estRetiree = estRetiree;
     }
 
-    public Boolean getEstEnAttente() {
-        return estEnAttente;
+    public Galerie getGalerie() {
+        return galerie;
     }
 
-    public void setEstEnAttente(Boolean estEnAttente) {
-        this.estEnAttente = estEnAttente;
-    }
-
-    public Utilisateur getEmetteur() {
-        return emetteur;
-    }
-
-    public void setEmetteur(Utilisateur emetteur) {
-        this.emetteur = emetteur;
-    }
+    public void setGalerie(Galerie galerie) {
+        this.galerie = galerie;
+    }*/
 
     public Long getId() {
         return id;
@@ -100,6 +95,14 @@ public class Signalement implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public String getUrl(){
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -112,10 +115,10 @@ public class Signalement implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Signalement)) {
+        if (!(object instanceof Image)) {
             return false;
         }
-        Signalement other = (Signalement) object;
+        Image other = (Image) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -124,7 +127,7 @@ public class Signalement implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Signalement[ id=" + id + " ]";
+        return "ul.dateroulette.entity.Image[ id=" + id + " ]";
     }
     
 }

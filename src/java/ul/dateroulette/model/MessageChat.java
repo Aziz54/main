@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,10 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
-/**
- *
- * @author thomas
- */
 @Entity
 public class MessageChat implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -33,27 +23,44 @@ public class MessageChat implements Serializable {
     @OneToOne
     private Utilisateur expediteur;
     
+    public MessageChat(){
+        
+    }
+    
+    public MessageChat(String contenu, Utilisateur user){
+        this.contenu = contenu;
+        this.expediteur = user;
+        this.date =  new Date();
+    }
+    
     public String getContenu() {
         return contenu;
     }
+    
     public void setContenu(String contenu) {
         this.contenu = contenu;
     }
+    
     public Date getDate() {
         return date;
     }
+    
     public void setDate(Date date) {
         this.date = date;
     }
+    
     public SessionChat getSessionChat() {
         return sessionChat;
     }
+    
     public void setSessionChat(SessionChat sessionChat) {
         this.sessionChat = sessionChat;
     }
+    
     public Utilisateur getExpediteur() {
         return expediteur;
     }
+    
     public void setExpediteur(Utilisateur expediteur) {
         this.expediteur = expediteur;
     }
@@ -89,6 +96,5 @@ public class MessageChat implements Serializable {
     @Override
     public String toString() {
         return "ul.dateroulette.entity.MessageChat[ id=" + id + " ]";
-    }
-    
+    }    
 }

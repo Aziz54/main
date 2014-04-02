@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -18,20 +18,20 @@ import javax.persistence.OneToOne;
  * @author thomas
  */
 @Entity
-public class SignalementUtilisateur extends Signalement implements Serializable {
+public class SignalementImage extends Signalement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    private Utilisateur utilisateurSignale;
+    private Image imageSignalee;
     
-    public Utilisateur getUtilisateurSignale() {
-        return utilisateurSignale;
+    public Image getImageSignalee() {
+        return imageSignalee;
     }
 
-    public void setUtilisateurSignale(Utilisateur utilisateurSignale) {
-        this.utilisateurSignale = utilisateurSignale;
+    public void setImageSignalee(Image imageSignalee) {
+        this.imageSignalee = imageSignalee;
     }
 
     @Override
@@ -54,10 +54,10 @@ public class SignalementUtilisateur extends Signalement implements Serializable 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SignalementUtilisateur)) {
+        if (!(object instanceof SignalementImage)) {
             return false;
         }
-        SignalementUtilisateur other = (SignalementUtilisateur) object;
+        SignalementImage other = (SignalementImage) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -66,7 +66,7 @@ public class SignalementUtilisateur extends Signalement implements Serializable 
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.SignalementUtilisateur[ id=" + id + " ]";
+        return "ul.dateroulette.entity.SignalementImage[ id=" + id + " ]";
     }
     
 }

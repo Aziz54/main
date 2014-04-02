@@ -9,33 +9,33 @@
     <h:body>
             <h:form>
             <p>Pourquoi la vie ?</p>
-            <h:inputText value="#{questionnaireBean.reponse}"/>
+            <h:inputText value="#{beanQuestionnaire.reponse}"/>
             <br/>
             <p>Qui est ?</p>
-            <h:selectOneMenu value="#{questionnaireBean.reponse}">
-                <f:selectItem itemValue="Albert" itemLabel="Albert" />
-                <f:selectItem itemValue="Benoit" itemLabel="Benoit" />
-                <f:selectItem itemValue="Chris" itemLabel="Chris" />
-                <f:selectItem itemValue="Dave" itemLabel="Dave" />	
-                <f:selectItem itemValue="Ektor" itemLabel="Ektor" />
+            <h:selectOneMenu value="#{beanQuestionnaire.reponse}">
+                <f:selectItem itemValue="1" itemLabel="Albert" />
+                <f:selectItem itemValue="2" itemLabel="Benoit" />
+                <f:selectItem itemValue="3" itemLabel="Chris" />
+                <f:selectItem itemValue="4" itemLabel="Dave" />	
+                <f:selectItem itemValue="5" itemLabel="Ektor" />
             </h:selectOneMenu><br/><br/>
             <p>Quels sont tes prénoms masculins préférés ?</p>
-            <h:selectManyCheckbox value="#{questionnaireBean.reponsesQcm}">
-                <f:selectItem itemValue="Albert" itemLabel="Albert" />
-                <f:selectItem itemValue="Benoit" itemLabel="Benoit" />
-                <f:selectItem itemValue="Chris" itemLabel="Chris" />
-                <f:selectItem itemValue="Dave" itemLabel="Dave" />	
-                <f:selectItem itemValue="Ektor" itemLabel="Ektor" />
+            <h:selectManyCheckbox value="#{beanQuestionnaire.reponsesQcm}">
+                <f:selectItem itemValue="1" itemLabel="Albert" />
+                <f:selectItem itemValue="2" itemLabel="Benoit" />
+                <f:selectItem itemValue="3" itemLabel="Chris" />
+                <f:selectItem itemValue="4" itemLabel="Dave" />	
+                <f:selectItem itemValue="5" itemLabel="Ektor" />
             </h:selectManyCheckbox><br/><br/>
             <p>Quels sont tes prénoms féminins préférés ?</p>
-            <h:selectManyCheckbox value="#{questionnaireBean.reponsesQcm}">
-                <f:selectItem itemValue="Aline" itemLabel="Aline" />
-                <f:selectItem itemValue="Brunehilde" itemLabel="Brunehilde" />
-                <f:selectItem itemValue="Chantal" itemLabel="Chantal" />
-                <f:selectItem itemValue="Darwina" itemLabel="Darwina" />	
-                <f:selectItem itemValue="Eugénie" itemLabel="Eugénie" />
+            <h:selectManyCheckbox value="#{beanQuestionnaire.reponsesQcm}">
+                <f:selectItem itemValue="6" itemLabel="Aline" />
+                <f:selectItem itemValue="7" itemLabel="Brunehilde" />
+                <f:selectItem itemValue="8" itemLabel="Chantal" />
+                <f:selectItem itemValue="9" itemLabel="Darwina" />	
+                <f:selectItem itemValue="10" itemLabel="Eugénie" />
             </h:selectManyCheckbox><br/><br/>
-            <h:commandButton value="Envoyer" action="#{questionnaireBean.ajout}"/>      
+            <h:commandButton value="Envoyer" action="#{beanQuestionnaire.ajout}"/>      
         </h:form>
     </h:body>
 </html>

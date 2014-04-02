@@ -1,4 +1,4 @@
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

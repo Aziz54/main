@@ -4,70 +4,52 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class Contact implements Serializable {
+public class ReponseQCM implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Boolean estBloque;
-    private Boolean estAccepte;
-    @OneToOne
-    private Utilisateur estEnContactAvec;
+    private QuestionQCM question;
+    /**
+   * 
+   * @element-type Choix
+   */
+    @OneToMany
+    private Collection<Choix>  reponses;
+
+    public QuestionQCM getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(QuestionQCM question) {
+        this.question = question;
+    }
     
-    public Boolean bloquer() {
-        return null;
+    
+    public Collection<Choix> getReponses() {
+        return reponses;
     }
 
-    public Boolean debloquer() {
-        return null;
+    public void setReponses(Collection<Choix> reponses) {
+        this.reponses = reponses;
     }
-
-    public Boolean accepter() {
-        return null;
-    }
-
-    public Boolean refuser() {
-        return null;
-    }
-
-    public Boolean getEstBloque() {
-        return estBloque;
-    }
-
-    public void setEstBloque(Boolean estBloque) {
-        this.estBloque = estBloque;
-    }
-
-    public Boolean getEstAccepte() {
-        return estAccepte;
-    }
-
-    public void setEstAccepte(Boolean estAccepte) {
-        this.estAccepte = estAccepte;
-    }
-
-    public Utilisateur getEstEnContactAvec() {
-        return estEnContactAvec;
-    }
-
-    public void setEstEnContactAvec(Utilisateur estEnContactAvec) {
-        this.estEnContactAvec = estEnContactAvec;
-    }
-
+    
     public Long getId() {
         return id;
     }
@@ -86,10 +68,10 @@ public class Contact implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Contact)) {
+        if (!(object instanceof ReponseQCM)) {
             return false;
         }
-        Contact other = (Contact) object;
+        ReponseQCM other = (ReponseQCM) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +80,7 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Contact[ id=" + id + " ]";
+        return "ul.dateroulette.entity.ReponseQCM[ id=" + id + " ]";
     }
     
 }

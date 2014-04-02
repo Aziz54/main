@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -13,52 +7,55 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author thomas
- */
 @Entity
-public class ReponseOuverte implements Serializable {
+public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String reponse;
+    private Boolean estBloque;
+    private Boolean estAccepte;
     @OneToOne
-    private QuestionOuverte question;
-    private int width;
-    private int height;
+    private Utilisateur estEnContactAvec;
     
-    public String getReponse() {
-        return reponse;
+    public Boolean bloquer() {
+        return null;
     }
 
-    public void setReponse(String reponse) {
-        this.reponse = reponse;
+    public Boolean debloquer() {
+        return null;
     }
 
-    public QuestionOuverte getQuestion() {
-        return question;
+    public Boolean accepter() {
+        return null;
     }
 
-    public void setQuestion(QuestionOuverte question) {
-        this.question = question;
+    public Boolean refuser() {
+        return null;
     }
 
-    public int getWidth() {
-        return width;
+    public Boolean getEstBloque() {
+        return estBloque;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setEstBloque(Boolean estBloque) {
+        this.estBloque = estBloque;
     }
 
-    public int getHeight() {
-        return height;
+    public Boolean getEstAccepte() {
+        return estAccepte;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setEstAccepte(Boolean estAccepte) {
+        this.estAccepte = estAccepte;
+    }
+
+    public Utilisateur getEstEnContactAvec() {
+        return estEnContactAvec;
+    }
+
+    public void setEstEnContactAvec(Utilisateur estEnContactAvec) {
+        this.estEnContactAvec = estEnContactAvec;
     }
 
     public Long getId() {
@@ -79,10 +76,10 @@ public class ReponseOuverte implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ReponseOuverte)) {
+        if (!(object instanceof Contact)) {
             return false;
         }
-        ReponseOuverte other = (ReponseOuverte) object;
+        Contact other = (Contact) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -91,7 +88,7 @@ public class ReponseOuverte implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.ReponseOuverte[ id=" + id + " ]";
+        return "ul.dateroulette.entity.Contact[ id=" + id + " ]";
     }
     
 }

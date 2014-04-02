@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,39 +20,51 @@ import javax.persistence.OneToMany;
  * @author thomas
  */
 @Entity
-public class Question implements Serializable {
+public class QuestionQCM extends Question implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String question;
+    private Integer nombreChoixMax;
+    private String type;
+
     /**
      * 
-     * @element-type Questionnaire
+     * @element-type Choix
      */
     @OneToMany
-    private ArrayList<Questionnaire>  questionnaires;
+    private Collection<Choix> choix;
     
-    public String getQuestion() {
-        return question;
+    public Integer getNombreChoixMax() {
+        return nombreChoixMax;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setNombreChoixMax(Integer nombreChoixMax) {
+        this.nombreChoixMax = nombreChoixMax;
     }
 
-    public ArrayList<Questionnaire> getQuestionnaires() {
-        return questionnaires;
+    public String getType() {
+        return type;
     }
 
-    public void setQuestionnaires(ArrayList<Questionnaire> questionnaires) {
-        this.questionnaires = questionnaires;
+    public void setType(String type) {
+        this.type = type;
     }
 
+    public Collection<Choix> getChoix() {
+        return choix;
+    }
+
+    public void setChoix(ArrayList<Choix> choix) {
+        this.choix = choix;
+    }
+
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,10 +79,10 @@ public class Question implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Question)) {
+        if (!(object instanceof QuestionQCM)) {
             return false;
         }
-        Question other = (Question) object;
+        QuestionQCM other = (QuestionQCM) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -78,7 +91,7 @@ public class Question implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Question[ id=" + id + " ]";
+        return "ul.dateroulette.entity.QuestionQCM[ id=" + id + " ]";
     }
     
 }

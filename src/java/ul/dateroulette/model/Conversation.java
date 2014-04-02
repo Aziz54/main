@@ -4,54 +4,56 @@
  * and open the template in the editor.
  */
 
-package model;
+package ul.dateroulette.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author thomas
  */
 @Entity
-public class Questionnaire implements Serializable {
+public class Conversation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nom;
+    @OneToOne
+    private Utilisateur destinataire;
+    @OneToOne
+    private Utilisateur expediteur;
     /**
      * 
-     * @element-type Question
+     * @element-type MessageConversation
      */
     @OneToMany
-    private ArrayList<Question>  questions;
+    private Collection<MessageConversation>  messages;
     
-    public String getNom() {
-        return nom;
+    public Utilisateur getDestinataire() {
+        return destinataire;
     }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setDestinataire(Utilisateur destinataire) {
+        this.destinataire = destinataire;
     }
-
-    public ArrayList<Question> getQuestions() {
-        return questions;
+    public Utilisateur getExpediteur() {
+        return expediteur;
     }
-
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
+    public void setExpediteur(Utilisateur expediteur) {
+        this.expediteur = expediteur;
     }
-
-    public void ajouterQuestion(Question question) {
+    public Collection<MessageConversation> getMessages() {
+        return messages;
     }
-
-    public void retirerQuestion(Question question) {
+    public void setMessages(ArrayList<MessageConversation> messages) {
+        this.messages = messages;
     }
 
     public Long getId() {
@@ -72,10 +74,10 @@ public class Questionnaire implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Questionnaire)) {
+        if (!(object instanceof Conversation)) {
             return false;
         }
-        Questionnaire other = (Questionnaire) object;
+        Conversation other = (Conversation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -84,7 +86,7 @@ public class Questionnaire implements Serializable {
 
     @Override
     public String toString() {
-        return "ul.dateroulette.entity.Questionnaire[ id=" + id + " ]";
+        return "ul.dateroulette.entity.Conversation[ id=" + id + " ]";
     }
     
 }
