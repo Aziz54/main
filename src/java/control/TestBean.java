@@ -18,20 +18,19 @@ import model.*;
 @RequestScoped
 public class TestBean {
     @ManagedProperty ( value = "#{test}")
-    public String test;
+    public String test = "bonjour";
     Questionnaire q;
     //String rep= "bonjour";
-    ArrayList<String> rep = new ArrayList<String>();
+    public ArrayList<String> rep = new ArrayList<String>();
+    public String repo = "";
+    public ArrayList<String> qcm = new ArrayList<String>();
+    public int i = 0;
 
     /**
      * Creates a new instance of TestBean
      */
     public TestBean() {
-        
-    }
-    
-    public String getQuestionnaire() {
-            q = new Questionnaire();
+        q = new Questionnaire();
             q.setId((long)1);
             q.setNom("Questionnaire");
             QuestionOuverte q1 = new QuestionOuverte();
@@ -63,6 +62,10 @@ public class TestBean {
             arrayQuestion.add(q3);
             arrayQuestion.add(q4);
             q.setQuestions(arrayQuestion);
+    }
+    
+    public String getQuestionnaire() {
+            
             StringBuilder sb = new StringBuilder();
             sb.append("<h:form>");
             for(Question quest: q.getQuestions() ){
@@ -100,16 +103,20 @@ public class TestBean {
     }    
     
     public void setReponse(String s) {
+        System.out.println("Tu réponds à la question " + i);
+        i++;
+        System.out.println(s);
         this.rep.add(s);
     }
     
-    public String getReponse() {
-        StringBuilder sb = new StringBuilder();
+    public ArrayList<String> getReponse() {
+        /*StringBuilder sb = new StringBuilder();
         for(String s: this.rep) {
             sb.append(s);
-            sb.append("<br>");
+            sb.append("&nbsp");
         }
-        return sb.toString();
+        return sb.toString();*/
+        return this.rep;
     }
     
     public void setTest(String titre) {
@@ -122,7 +129,29 @@ public class TestBean {
     }
     
     public void ajout() {
-        ReponseOuverte ro = new ReponseOuverte();
-        ro.setReponse(this.test);
     }
+
+    public ArrayList<String> getQcm() {
+        return qcm;
+    }
+
+    public void setQcm(ArrayList<String> s) {
+        System.out.println("Tu réponds à la question qcm " + i);
+        i++;
+        System.out.println(s);
+        this.qcm = s;
+    }
+
+    public String getRepo() {
+        return repo;
+    }
+
+    public void setRepo(String rep) {
+        System.out.println("Tu réponds à la question ouverte " + i);
+        i++;
+        System.out.println(rep);
+        this.repo = rep;
+    }
+    
+    
 }
