@@ -9,14 +9,20 @@
     <h:body>
         Hello from Jose
         <h:form>
-            <h:selectOneMenu value="#{testBean.reponse}">
-                <f:selectItem itemValue="1" itemLabel="1" />
-                <f:selectItem itemValue="2" itemLabel="2" />
-                <f:selectItem itemValue="3" itemLabel="3" />
-            </h:selectOneMenu>
             <h:inputText value="#{testBean.reponse}"></h:inputText>
-            <h:commandButton value="Submit" />
+            <h:selectOneMenu value="#{testBean.reponse}">
+            <f:selectItem itemValue="1" itemLabel="Item 1" />
+            <f:selectItem itemValue="2" itemLabel="Item 2" />
+            <f:selectItem itemValue="3" itemLabel="Item 3" />
+            <f:selectItem itemValue="4" itemLabel="Item 4" />
+            <f:selectItem itemValue="5" itemLabel="Item 5" />				
+            </h:selectOneMenu>	
+            <h:commandButton value="Submit" action="#{testBean.ajout}"/>
+
+        
         </h:form>
+        
+        
         <h:outputText value="#{testBean.reponse}" escape="false"/>
 
     </h:body>

@@ -6,6 +6,7 @@ package control;
 
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import model.*;
 
@@ -16,6 +17,8 @@ import model.*;
 @ManagedBean
 @RequestScoped
 public class TestBean {
+    @ManagedProperty ( value = "#{test}")
+    public String test;
     Questionnaire q;
     //String rep= "bonjour";
     ArrayList<String> rep = new ArrayList<String>();
@@ -107,5 +110,19 @@ public class TestBean {
             sb.append("<br>");
         }
         return sb.toString();
+    }
+    
+    public void setTest(String titre) {
+        this.test = titre;
+        System.out.println(test);
+    }
+    
+    public String getTest() {
+        return this.test;
+    }
+    
+    public void ajout() {
+        ReponseOuverte ro = new ReponseOuverte();
+        ro.setReponse(this.test);
     }
 }
