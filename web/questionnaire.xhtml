@@ -2,40 +2,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-            <h:form>
-            <p>Pourquoi la vie ?</p>
-            <h:inputText value="#{beanQuestionnaire.reponse}"/>
-            <br/>
+        <h:form>
             <p>Qui est ?</p>
-            <h:selectOneMenu value="#{beanQuestionnaire.reponse}">
-                <f:selectItem itemValue="1" itemLabel="Albert" />
-                <f:selectItem itemValue="2" itemLabel="Benoit" />
-                <f:selectItem itemValue="3" itemLabel="Chris" />
-                <f:selectItem itemValue="4" itemLabel="Dave" />	
-                <f:selectItem itemValue="5" itemLabel="Ektor" />
-            </h:selectOneMenu><br/><br/>
-            <p>Quels sont tes prénoms masculins préférés ?</p>
-            <h:selectManyCheckbox value="#{beanQuestionnaire.reponsesQcm}">
-                <f:selectItem itemValue="1" itemLabel="Albert" />
-                <f:selectItem itemValue="2" itemLabel="Benoit" />
-                <f:selectItem itemValue="3" itemLabel="Chris" />
-                <f:selectItem itemValue="4" itemLabel="Dave" />	
-                <f:selectItem itemValue="5" itemLabel="Ektor" />
-            </h:selectManyCheckbox><br/><br/>
-            <p>Quels sont tes prénoms féminins préférés ?</p>
-            <h:selectManyCheckbox value="#{beanQuestionnaire.reponsesQcm}">
-                <f:selectItem itemValue="6" itemLabel="Aline" />
-                <f:selectItem itemValue="7" itemLabel="Brunehilde" />
-                <f:selectItem itemValue="8" itemLabel="Chantal" />
-                <f:selectItem itemValue="9" itemLabel="Darwina" />	
-                <f:selectItem itemValue="10" itemLabel="Eugénie" />
-            </h:selectManyCheckbox><br/><br/>
-            <h:commandButton value="Envoyer" action="#{beanQuestionnaire.ajout}"/>      
+            <c:forEach var="questions" items="${beanQuestionnaire.question}">
+                ${questions.question}<br/>
+                <c:set var="quest" value="${questions.id}"></c:set>
+                <c:forEach var="choix" items="${beanQuestionnaire.getChoix(quest)}">
+                    Bonjour <h:outputText value="${quest}"></h:outputText>
+                </c:forEach>
+            </c:forEach>
         </h:form>
     </h:body>
 </html>

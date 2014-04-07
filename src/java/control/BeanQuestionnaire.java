@@ -8,12 +8,14 @@ package control;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -46,6 +48,7 @@ public class BeanQuestionnaire {
     public int i = 0;
     public String nomQuest;
     public Questionnaire q;
+    public int idQuest;
     /**
      * Creates a new instance of BeanQuestionnaire
      */
@@ -111,4 +114,28 @@ public class BeanQuestionnaire {
             this.reponse = rep;
         }
     }    
+    
+    public List<Question> getQuestion(){
+        Query jQuery = em.createQuery("Select q From Question q");
+       List<Question> rList = jQuery.getResultList();
+       return rList;
+    }
+    
+    public List<Choix> getChoix(int idQuest){
+       Query jQuery = em.createQuery("Select c From Choix c Where c.question_id = \""+ idQuest +"\"");
+       System.out.println(idQuest + " bonjour");
+       List<Choix> rList = jQuery.getResultList();
+       System.out.println(rList.toString());
+       return rList;
+    }
+
+    public int getIdQuest() {
+        return idQuest;
+    }
+
+    public void setIdQuest(int idQuest) {
+        this.idQuest = idQuest;
+    }
+    
+    
 }
