@@ -27,6 +27,7 @@
                         </c:forEach>
                     </h:selectOneMenu><br/>
                 </c:if>
+                
                 <!-- Cas Plusieurs réponses -->
                 <c:if test="${type == 'selectmany'}">
                     <h:selectManyCheckbox value="#{beanQuestionnaire.reponse}">

@@ -6,16 +6,19 @@
 
 package control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -116,9 +119,15 @@ public class BeanQuestionnaire {
     }    
     
     public List<Question> getQuestion(){
-        Query jQuery = em.createQuery("Select q From Question q");
-       List<Question> rList = jQuery.getResultList();
-       return rList;
+       Query jQuery = em.createQuery("Select q From Questionnaire q Where q.id = :id");
+       HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+      // System.out.println(request.getParameter("id"));
+       jQuery.setParameter("id", Integer.parseInt(request.getParameter("id")));
+       List<Questionnaire> rList = jQuery.getResultList();
+       jQuery = em.createQuery("Select q From Question q Where q.questionnaires = :q");
+       jQuery.setParameter("q", rList.get(0));
+       List<Question> rListe = jQuery.getResultList();
+       return rListe;
     }
     
     public List<Choix> getChoix(int idQuest){
@@ -127,11 +136,8 @@ public class BeanQuestionnaire {
        if(question.getResultList().get(0) instanceof QuestionQCM){
             Query jQuery = em.createQuery("SELECT a FROM Choix a WHERE a.question = :q");
             jQuery.setParameter("q", question.getResultList().get(0));
-
-            System.out.println(idQuest + " bonjour");
             //List<Integer> intList = jQuery.getResultList();
             List<Choix> rList = jQuery.getResultList();
-            System.out.println(rList.toString());
        return rList;
        }
        
@@ -142,9 +148,16 @@ public class BeanQuestionnaire {
         return idQuest;
     }
 
-    public void setIdQuest(int idQuest) {
+    public void setIdQuest(int idQuest) throws IOException {
         this.idQuest = idQuest;
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("questionnaire.xhtml?id="+idQuest);
     }
     
+    public List<Questionnaire> getQuests(){
+       Query jQuery = em.createQuery("Select q From Questionnaire q");
+       List<Questionnaire> rList = jQuery.getResultList();
+       return rList;
+    }
     
 }
