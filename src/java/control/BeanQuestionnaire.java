@@ -122,11 +122,20 @@ public class BeanQuestionnaire {
     }
     
     public List<Choix> getChoix(int idQuest){
-       Query jQuery = em.createQuery("Select c From Choix c Where c.question_id = \""+ idQuest +"\"");
-       System.out.println(idQuest + " bonjour");
-       List<Choix> rList = jQuery.getResultList();
-       System.out.println(rList.toString());
+       Query question = em.createQuery("SELECT a FROM Question a WHERE a.id = :id");
+       question.setParameter("id", idQuest);
+       if(question.getResultList().get(0) instanceof QuestionQCM){
+            Query jQuery = em.createQuery("SELECT a FROM Choix a WHERE a.question = :q");
+            jQuery.setParameter("q", question.getResultList().get(0));
+
+            System.out.println(idQuest + " bonjour");
+            //List<Integer> intList = jQuery.getResultList();
+            List<Choix> rList = jQuery.getResultList();
+            System.out.println(rList.toString());
        return rList;
+       }
+       
+       return null;
     }
 
     public int getIdQuest() {

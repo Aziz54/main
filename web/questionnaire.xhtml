@@ -9,13 +9,32 @@
     </h:head>
     <h:body>
         <h:form>
-            <p>Qui est ?</p>
-            <c:forEach var="questions" items="${beanQuestionnaire.question}">
+            <c:forEach var="questions" items="${beanQuestionnaire.question}">        
                 ${questions.question}<br/>
                 <c:set var="quest" value="${questions.id}"></c:set>
-                <c:forEach var="choix" items="${beanQuestionnaire.getChoix(quest)}">
-                    Bonjour <h:outputText value="${quest}"></h:outputText>
-                </c:forEach>
+                <c:set var="type" value="${questions.type}"></c:set>
+                
+                <!-- Cas Textarea -->
+                <c:if test="${type == 'textarea'}">
+                    <h:inputTextarea value="#{beanQuestionnaire.reponse}"></h:inputTextarea><br/>
+                </c:if>
+                
+                <!-- Cas Une seule réponse -->
+                <c:if test="${type == 'selectone'}">
+                    <h:selectOneMenu value="#{beanQuestionnaire.reponse}">
+                        <c:forEach var="choix" items="${beanQuestionnaire.getChoix(quest)}">
+                            <f:selectItem itemValue="${choix.id}" itemLabel="${choix.reponse}" /> 
+                        </c:forEach>
+                    </h:selectOneMenu><br/>
+                </c:if>
+                <!-- Cas Plusieurs réponses -->
+                <c:if test="${type == 'selectmany'}">
+                    <h:selectManyCheckbox value="#{beanQuestionnaire.reponse}">
+                        <c:forEach var="choix" items="${beanQuestionnaire.getChoix(quest)}">
+                            <f:selectItem itemValue="${choix.id}" itemLabel="${choix.reponse}" /> 
+                        </c:forEach>
+                    </h:selectManyCheckbox><br/>
+                </c:if>
             </c:forEach>
         </h:form>
     </h:body>

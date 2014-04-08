@@ -26,6 +26,7 @@ public class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String question;
+    private String type;
     /**
      * 
      * @element-type Questionnaire
@@ -81,5 +82,14 @@ public class Question implements Serializable {
     public String toString() {
         return "ul.dateroulette.entity.Question[ id=" + id + " ]";
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
     
 }
